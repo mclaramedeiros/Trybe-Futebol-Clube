@@ -1,35 +1,35 @@
-import { INTEGER, STRING, Model } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import db from '.';
 
 class User extends Model {
-  id!: number;
-  userName!: string;
-  role!: string;
-  email!: string;
-  password!: string;
+  declare id: number;
+  declare userName: string;
+  declare role: string;
+  declare email: string;
+  declare password: string;
 }
 User.init(
   {
     id: {
-      type: INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
     username: {
-      type: STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     role: {
-      type: STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     email: {
-      type: STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     password: {
-      type: STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
@@ -38,6 +38,6 @@ User.init(
     modelName: 'users',
     underscored: true,
     timestamps: false,
-  },
+  }
 );
 export default User;
