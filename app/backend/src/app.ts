@@ -1,4 +1,8 @@
 import * as express from 'express';
+import 'express-async-errors';
+// import { threadId } from 'worker_threads';
+// import * as cors from 'cors';
+import loginRouter from './routes/loginRoute';
 
 class App {
   public app: express.Express;
@@ -25,6 +29,8 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
+    // this.app.use(cors());
+    this.app.use('/login', loginRouter);
   }
 
   public start(PORT: string | number): void {

@@ -38,6 +38,6 @@ User.init(
     modelName: 'users',
     underscored: true,
     timestamps: false,
-  }
+  },
 );
 export default User;
