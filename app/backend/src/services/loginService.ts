@@ -13,7 +13,10 @@ const loginService = {
     // const userPassword = await users.findOne({
     //   where: { password: body.password },
     // });
-    // if()
+    const result = body.password;
+    if (!result) {
+      return { message: 'All fields must be filled', error: true };
+    }
     if (!user) {
       return { message: 'All fields must be filled', error: true };
     }
