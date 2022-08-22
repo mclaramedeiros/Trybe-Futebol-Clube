@@ -10,14 +10,18 @@ const loginService = {
     const user = await users.findOne({
       where: { email: body.email },
     });
+    // const userPassword = await users.findOne({
+    //   where: { password: body.password },
+    // });
+    // if()
     if (!user) {
-      throw new Error();
+      return { message: 'All fields must be filled', error: true };
     }
     const { password, ...userWithoutPassword } = user;
     const token = jwt.sign(userWithoutPassword, secret);
     return token;
   },
-};
+} as any;
 
 // return res.status(401).json({ message: 'Incorrect email or password' });
 
