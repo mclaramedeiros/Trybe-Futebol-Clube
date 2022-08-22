@@ -6,7 +6,7 @@ function loginValidate(req: Request, res: Response, next: NextFunction) {
   const result = req.body.password;
   if (!result || !userEmail) {
     // return { message: 'All fields must be filled', error: 400 };
-    return res.status(400).json(userEmail);
+    return res.status(400).json({ message: 'All fields must be filled' });
   }
   if (!emailRegex.test(userEmail) || result.length < 6) {
     // return { message: 'Incorrect email or password', error: 401 };
