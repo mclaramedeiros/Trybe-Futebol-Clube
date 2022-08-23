@@ -6,8 +6,9 @@ import { iLogin } from '../interface/iLogin';
 import users from '../database/models/users';
 import BadRequest from '../middlewares/BadRequest';
 // import { type } from 'os';
+// import { VerifyToken } from '../helpers/jwt';
 
-const secret = process.env.JWT_SECRET || 'secret';
+const secret = process.env.JWT_SECRET || 'jwt_secret';
 
 type Error = {
   status: number;
@@ -21,6 +22,7 @@ const loginService = {
     }
     const user = await users.findOne({
       where: { email: body.email },
+      raw: true,
     });
     if (!user) {
       throw new UnauthorizedError('Incorrect email or password');
@@ -28,12 +30,18 @@ const loginService = {
     if (!bcrypt.compareSync(body.password, user.password)) {
       throw new UnauthorizedError('Incorrect email or password');
     }
+    // aqui e onde tiro minha password
+    // const { password, ...userWithoutPassword } = user;
 
-    const { password, ...userWithoutPassword } = user;
-
-    const token = jwt.sign(userWithoutPassword, secret);
+    const token = jwt.sign(user, secret);
     return token;
   },
+  // async validateToken(headers: string): Promise<string | Error> {
+  //   const token = VerifyToken;
+  //   const { role } = JSON.parse(JSON.stringify(data));
+  //   if()
+
+  // },
 };
 
 // return res.status(401).json({ message: 'Incorrect email or password' });

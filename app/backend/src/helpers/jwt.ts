@@ -19,8 +19,7 @@ export default class tokenProvider {
     return data;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  verifyToken = (token: any) => {
+  verifyToken = (token: string) => {
     if (!token) {
       throw new NotFoundError('Token not found');
     }
