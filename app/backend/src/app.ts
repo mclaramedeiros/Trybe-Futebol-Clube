@@ -1,5 +1,6 @@
 import * as express from 'express';
 import 'express-async-errors';
+import handleError from './middlewares/handleError';
 // import { threadId } from 'worker_threads';
 // import * as cors from 'cors';
 import loginRouter from './routes/loginRoute';
@@ -29,8 +30,9 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
-    // this.app.use(cors());
     this.app.use('/login', loginRouter);
+
+    this.app.use(handleError);
   }
 
   public start(PORT: string | number): void {

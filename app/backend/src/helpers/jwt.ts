@@ -2,7 +2,7 @@ import * as jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import { iLogin } from '../interface/iLogin';
 
-import NotFoundError from '../middlewares/NotFoundError';
+import NotFoundError from '../middlewares/UnauthorizedError';
 
 const secret = process.env.JWT_SECRET || 'secret';
 
