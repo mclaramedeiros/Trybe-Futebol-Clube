@@ -4,6 +4,7 @@ import handleError from './middlewares/handleError';
 // import { threadId } from 'worker_threads';
 // import * as cors from 'cors';
 import loginRouter from './routes/loginRoute';
+import teamsRouter from './routes/teamsRouter';
 
 class App {
   public app: express.Express;
@@ -31,6 +32,7 @@ class App {
     this.app.use(express.json());
     this.app.use(accessControl);
     this.app.use('/login', loginRouter);
+    this.app.use('/teams', teamsRouter);
 
     this.app.use(handleError);
   }
