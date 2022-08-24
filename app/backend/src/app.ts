@@ -4,6 +4,7 @@ import handleError from './middlewares/handleError';
 // import { threadId } from 'worker_threads';
 // import * as cors from 'cors';
 import loginRouter from './routes/loginRoute';
+import matchesRouter from './routes/matchesRouter';
 import teamsRouter from './routes/teamsRouter';
 
 class App {
@@ -33,6 +34,7 @@ class App {
     this.app.use(accessControl);
     this.app.use('/login', loginRouter);
     this.app.use('/teams', teamsRouter);
+    this.app.use('/matches', matchesRouter);
 
     this.app.use(handleError);
   }
