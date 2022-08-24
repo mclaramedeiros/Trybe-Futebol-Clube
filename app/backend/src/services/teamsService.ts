@@ -5,12 +5,20 @@ type teamTypes = {
   id: number;
   name: string;
 };
-
-const getAll = async (): Promise<teamTypes[]> => {
-  const teams = await Team.findAll({
-    raw: true,
-  });
-  return teams as unknown as teamTypes[];
+const teamsService = {
+  async getAll(): Promise<teamTypes[]> {
+    const teams = await Team.findAll({
+      raw: true,
+    });
+    return teams as unknown as teamTypes[];
+  },
+  async getItem(id: number): Promise<teamTypes[]> {
+    const team = await Team.findOne({
+      where: { id },
+      raw: true,
+    });
+    return team as unknown as teamTypes[];
+  },
 };
 
-export default getAll;
+export default teamsService;
