@@ -1,11 +1,9 @@
-// import { Router } from 'express';
-// import { validateToken } from '../middlewares/validateToken';
-// import leaderController from '../controllers/leaderboardController';
+import { Router } from 'express';
+import leaderController from '../controllers/leaderController';
 
-// const leaderboardRouter = Router();
+const leaderboardRouter = Router();
 
-// leaderboardRouter.get('/validate', validateToken);
-// leaderboardRouter.post('/', leaderController.filterAll);
-// // loginRouter.get('/', userController.role);
+leaderboardRouter.get('/home', leaderController.filterAll);
+// loginRouter.get('/', userController.role);
 
-// export default leaderboardRouter;
+export default leaderboardRouter;
