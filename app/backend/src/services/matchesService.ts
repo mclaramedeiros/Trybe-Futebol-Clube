@@ -5,6 +5,7 @@ import Teams from '../database/models/teams';
 import { iMatches } from '../interface/iMatches';
 import UnPossible from '../middlewares/unPossible';
 import teamsService from './teamsService';
+// import UnauthorizedError from '../middlewares/UnauthorizedError';
 
 type matchesTypes = {
   id: number;
@@ -61,6 +62,19 @@ const matchesService = {
     if (!homeTeamExists || !awayTeamExists) {
       throw new ThrowError('There is no team with such id!');
     }
+  },
+  async updateMatches(
+    id: number,
+    homeTeamGoals: number,
+    awayTeamGoals: number,
+  ) {
+    await Matches.update(
+      {
+        homeTeamGoals,
+        awayTeamGoals,
+      },
+      { where: { id } },
+    );
   },
 };
 

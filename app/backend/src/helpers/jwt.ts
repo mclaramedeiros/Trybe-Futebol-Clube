@@ -27,7 +27,7 @@ export default class tokenProvider {
       const data = jwt.verify(token, secret);
       return data;
     } catch (error) {
-      throw new NotFoundError('Expired or invalid token');
+      throw new NotFoundError('Token must be a valid token');
     }
   };
 }
